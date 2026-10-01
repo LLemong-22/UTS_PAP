@@ -90,7 +90,7 @@ Jawaban Anda (A/B/C/D): A
 ```text
 ==================================================
 >>> PERINGATAN: ANDA MEMASUKI LANTAI 11 <<<
->>> FINAL BOSS: THE GUARDIAN OF MATH1011 <<<
+>>> FINAL BOSS: SANGAR PhD <<<
 Hadiah Kemenangan: 911 GOLD
 ==================================================
 Pertanyaan: Berapakah hasil dari (6^2 + 8^2) - 4 ?
@@ -100,7 +100,7 @@ C. 100
 D. 104
 Jawaban Anda (A/B/C/D): B
 
->> LUAR BIASA! FINAL BOSS DIKALAHKAN, Anda memperoleh +911 Gold!
+>> LUAR BIASA! SANGAR PhD DIKALAHKAN, Anda memperoleh +911 Gold!
 
 ```
 
@@ -111,7 +111,7 @@ Jawaban Anda (A/B/C/D): B
               HASIL EKSPEDISI TOWER               
 ==================================================
 Total Gold yang Dikumpulkan : 1011 / 1011 Gold
-Kategori Petualang          : Grand Champion (Harta Sempurna)
+Kategori Petualang          : Penakluk Super Sangar
 Pesan Petualangan           : Ekspedisi selesai! Anda berhasil 
                               membawa pulang seluruh harta karun 
                               dari Tower of MATH1011!
