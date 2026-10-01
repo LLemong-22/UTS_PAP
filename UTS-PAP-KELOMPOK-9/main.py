@@ -1,4 +1,3 @@
-import math
 import random
 
 # ==============================================================================
@@ -15,12 +14,12 @@ TOTAL_GOLD_MAKSIMAL = 1011
 # Penanggung Jawab: Wilbert Owen Nathanael (262602544)
 # ==============================================================================
 def generate_soal_reguler():
-    """
-    Membangkitkan soal aritmatika dasar (Lantai 1-10) dengan 4 tipe operasi:
+    """Membangkitkan soal aritmatika dasar (Lantai 1-10) dengan 4 tipe operasi:
+
     1: Penjumlahan (+)
     2: Pengurangan (-)
     3: Perkalian (*)
-    4: Pembagian bulat (//) dengan hasil yang selalu pas (tanpa sisa)
+    4: Pembagian bulat (/) dengan hasil yang selalu pas (tanpa sisa)
     Mengembalikan: nama_monster, teks_soal, jawaban_benar, bobot_gold
     """
     nama_monster = buat_nama_monster()
@@ -45,7 +44,7 @@ def generate_soal_reguler():
     else:
         # Menjamin pembagian bilangan bulat yang tepat dan rapi
         hasil_kali = a * b
-        teks_soal = f"{hasil_kali} // {b} = ?"
+        teks_soal = f"{hasil_kali} / {b} = ?"
         jawaban_benar = a
 
     return nama_monster, teks_soal, jawaban_benar, HADIAH_GOLD_REGULER
@@ -56,13 +55,18 @@ def generate_soal_reguler():
 # Penanggung Jawab: Christoph Jordan Dalimartin (262510530)
 # ==============================================================================
 def validasi_input_jawaban(prompt_teks):
-    """
-    Menerima input dari pengguna, melakukan sanitasi string (strip dan upper),
-    serta memastikan jawaban hanya berupa salah satu dari huruf 'A', 'B', 'C', atau 'D'.
-    Murni menggunakan percabangan boolean tanpa menggunakan struktur koleksi list/dict/set/tuple.
+    """Menerima input dari pengguna, melakukan sanitasi string (strip dan
+    upper),
+
+    serta memastikan jawaban hanya berupa salah satu dari huruf 'A', 'B', 'C',
+    atau 'D'.
+    Murni menggunakan percabangan boolean tanpa struktur koleksi
+    list/dict/set/tuple.
     """
     jawaban = input(prompt_teks).strip().upper()
-    while jawaban != "A" and jawaban != "B" and jawaban != "C" and jawaban != "D":
+    while (
+        jawaban != "A" and jawaban != "B" and jawaban != "C" and jawaban != "D"
+    ):
         print(">> Pilihan tidak valid! Harap masukkan hanya A, B, C, atau D.")
         jawaban = input(prompt_teks).strip().upper()
     return jawaban
@@ -73,9 +77,10 @@ def validasi_input_jawaban(prompt_teks):
 # Penanggung Jawab: Lionel Esra Mailuhu (262602117)
 # ==============================================================================
 def buat_distraktor(jawaban_benar):
-    """
-    Membangkitkan 3 nilai distraktor (jawaban salah) yang nilainya berbeda satu sama lain
-    serta berbeda dari jawaban asli. Murni menggunakan kalkulasi skalar dan random.
+    """Membangkitkan 3 nilai distraktor (jawaban salah) yang nilainya berbeda
+
+    satu sama lain serta berbeda dari jawaban asli. Murni menggunakan kalkulasi
+    skalar dan random.
     """
     salah1 = jawaban_benar + random.randint(1, 4)
     salah2 = jawaban_benar - random.randint(1, 4)
@@ -89,8 +94,8 @@ def buat_distraktor(jawaban_benar):
 
 
 def tampilkan_pilihan(posisi_benar, benar, s1, s2, s3):
-    """
-    Mencetak 4 opsi pilihan ganda (A, B, C, D) berdasarkan posisi kunci (1-4)
+    """Mencetak 4 opsi pilihan ganda (A, B, C, D) berdasarkan posisi kunci (1-4)
+
     menggunakan percabangan if-elif-else tanpa tipe data list/tuple/dict.
     Mengembalikan huruf kunci jawaban yang benar ('A', 'B', 'C', atau 'D').
     """
@@ -125,9 +130,10 @@ def tampilkan_pilihan(posisi_benar, benar, s1, s2, s3):
 # Penanggung Jawab: Joel Sebastian Lasmito (262415411)
 # ==============================================================================
 def generate_soal_boss():
-    """
-    Membangkitkan soal Final Boss (Lantai 11) dari skenario tes RPG test.ipynb:
-    Dosen Penguji MATH1011 'SANGAR PhD' dengan mekanik kalkulasi putaran tempur (turns),
+    """Membangkitkan soal Final Boss (Lantai 11):
+
+    Dosen Penguji MATH1011 'SANGAR PhD' dengan mekanik kalkulasi putaran tempur
+    (turns),
     DMG senjata, Regen Boss, dan pasif Divine Shield tiap kelipatan 4 putaran.
     Mengembalikan: nama_monster, teks_soal, jawaban_benar, bobot_gold
     """
@@ -140,13 +146,16 @@ def generate_soal_boss():
     dmg_player = random.randint(1500, 2500)
     heal_boss = random.randint(200, 500)
 
+    # REVISI LOGIKA: Pada ronde r % 4 == 0, DMG = 0 dan Boss Regen heal_boss.
+    # Maka akumulasi damage bersih berkurang (- heal_boss).
     hp_calc = 0
     for r in range(1, total_putaran + 1):
         if r % 4 == 0:
-            hp_calc += heal_boss
+            hp_calc -= heal_boss
         else:
-            hp_calc += (dmg_player - heal_boss)
+            hp_calc += dmg_player - heal_boss
 
+    # Boss mati tepat di ronde terakhir jika HP awalnya sedikit di bawah hp_calc
     hp_boss = hp_calc - random.randint(1, (dmg_player - heal_boss) - 1)
     jawaban_benar = total_putaran
 
@@ -168,14 +177,13 @@ def generate_soal_boss():
 # Penanggung Jawab: Evan Adhiarja Yohanes (262407793)
 # ==============================================================================
 def tampilkan_hasil_ekspedisi(total_gold):
-    """
-    Menampilkan layar rekapitulasi skor akhir dan kategori petualang
-    sesuai dengan matriks perolehan Gold pada PRD (TEAM.md).
-    """
+    """Menampilkan layar rekapitulasi skor akhir dan kategori petualang."""
     print("==================================================")
     print("              HASIL EKSPEDISI TOWER               ")
     print("==================================================")
-    print(f"Total Gold yang Dikumpulkan : {total_gold} / {TOTAL_GOLD_MAKSIMAL} Gold")
+    print(
+        f"Total Gold yang Dikumpulkan : {total_gold} / {TOTAL_GOLD_MAKSIMAL} Gold"
+    )
 
     if total_gold == 1011:
         kategori = "Penakluk Super Sangar"
@@ -190,7 +198,7 @@ def tampilkan_hasil_ekspedisi(total_gold):
     elif total_gold >= 10:
         kategori = "Kurang Sangar"
         pesan1 = "Berhasil mengumpulkan Gold dari monster biasa,"
-        pesan2 = "namun gagal menaklukkan tantangan lantai 11."
+        pesan2 = "namun gagal menaklukkan Final Boss."
         pesan3 = ""
     else:
         kategori = "Tidak Sangar"
@@ -212,10 +220,9 @@ def tampilkan_hasil_ekspedisi(total_gold):
 # Penanggung Jawab: Yosia Edmund Herlianto (262514949)
 # ==============================================================================
 def buat_nama_monster():
-    """
-    Membangkitkan nama monster lucu gabungan nama anggota tim dan istilah kalkulus/matematika.
-    Contoh: 'Owen Asimtot', 'Joel Garis Singgung', 'Evan Limit', 'Christoph Integral'.
-    Murni menggunakan if-elif-else tanpa tipe data list sesuai silabus Week 1-7.
+    """Membangkitkan nama monster unik gabungan nama anggota tim dan istilah
+
+    kalkulus/matematika tanpa tipe data list sesuai silabus Week 1-7.
     """
     rand_nama = random.randint(1, 6)
     if rand_nama == 1:
@@ -249,29 +256,32 @@ def buat_nama_monster():
 
 
 def main():
-    """
-    Fungsi utama game loop: Mengelola alur permainan dari Lantai 1 sampai Lantai 11,
-    akumulasi Gold, koordinasi pemanggilan fungsi rekan tim, dan penutupan game.
-    """
+    """Fungsi utama game loop: Mengelola alur ekspedisi lantai 1-11,"""
     total_gold = 0
 
     print("\n" + "=" * 50)
-    print("      SELAMAT DATANG DI TOWER OF MATH1011       ")
+    print("      SELAMAT DATANG DI TOWER OF MATH1011      ")
     print("  Kumpulkan kepingan Gold dan taklukkan Puncak! ")
     print("=" * 50 + "\n")
 
     for lantai in range(1, TOTAL_LANTAI + 1):
         if lantai <= 10:
-            # Lantai Reguler (Lantai 1 - 10) - Task 1 & Task 6
-            nama_monster, teks_soal, jawaban_benar, bobot_gold = generate_soal_reguler()
+            # Lantai Reguler (Lantai 1 - 10)
+            nama_monster, teks_soal, jawaban_benar, bobot_gold = (
+                generate_soal_reguler()
+            )
             print("==================================================")
-            print(f"[FLOOR {lantai} / {TOTAL_LANTAI}] | TOTAL SAKU: {total_gold} GOLD")
+            print(
+                f"[FLOOR {lantai} / {TOTAL_LANTAI}] | TOTAL GOLD: {total_gold} GOLD"
+            )
             print(f"Monster {nama_monster} menghadang jalanmu!")
             print("==================================================")
             print(f"Pertanyaan: Serang titik lemahnya dengan menjawab: {teks_soal}")
         else:
-            # Lantai 11: Final Boss - Task 4
-            nama_monster, teks_soal, jawaban_benar, bobot_gold = generate_soal_boss()
+            # Lantai 11: Final Boss
+            nama_monster, teks_soal, jawaban_benar, bobot_gold = (
+                generate_soal_boss()
+            )
             print("==================================================")
             print(">>> PERINGATAN: ANDA MEMASUKI LANTAI 11 <<<")
             print(f">>> FINAL BOSS: {nama_monster} <<<")
@@ -279,34 +289,39 @@ def main():
             print("==================================================")
             print(teks_soal)
 
-        # Task 3: Algoritma Distraktor & Pengacakan Letak Opsi
+        # Bangkitkan opsi pilihan ganda
         s1, s2, s3 = buat_distraktor(jawaban_benar)
         posisi = random.randint(1, 4)
         kunci = tampilkan_pilihan(posisi, jawaban_benar, s1, s2, s3)
 
-        # Task 2: Validasi input pengguna
+        # Validasi input
         jawaban_user = validasi_input_jawaban("Jawaban Anda (A/B/C/D): ")
 
         # Evaluasi Jawaban
         if jawaban_user == kunci:
             total_gold += bobot_gold
             if lantai == 11:
-                print(f"\n>> FATALITY! {nama_monster} DIKALAHKAN, Anda memperoleh +{bobot_gold} Gold!\n")
+                print(
+                    f"\n>> FATALITY! {nama_monster} DIKALAHKAN, Anda memperoleh +{bobot_gold} Gold!\n"
+                )
             else:
-                print(f"\n>> CRITICAL HIT! Monster {nama_monster} kalah, Anda memperoleh +{bobot_gold} Gold!\n")
+                print(
+                    f"\n>> CRITICAL HIT! Monster {nama_monster} kalah, Anda memperoleh +{bobot_gold} Gold!\n"
+                )
         else:
             if lantai == 11:
-                print(f"\n>> YOU DIED! Anda gagal menaklukkan {nama_monster}. Kunci jawaban adalah {kunci} ({jawaban_benar} putaran).\n")
+                print(
+                    f"\n>> YOU DIED! Anda gagal menaklukkan {nama_monster}. Kunci jawaban adalah {kunci} ({jawaban_benar} putaran).\n"
+                )
             else:
-                print(f"\n>> SERANGAN MELESET! Kunci jawaban yang tepat adalah {kunci}.\n")
+                print(
+                    f"\n>> SERANGAN MELESET! Kunci jawaban yang tepat adalah {kunci}.\n"
+                )
 
-    # Tampilkan Rekapitulasi Akhir - Task 5
+    # Rekapitulasi Akhir
     print()
     tampilkan_hasil_ekspedisi(total_gold)
 
 
-# ==============================================================================
-# ENTRYPOINT UTAMA PROGRAM
-# ==============================================================================
 if __name__ == "__main__":
     main()

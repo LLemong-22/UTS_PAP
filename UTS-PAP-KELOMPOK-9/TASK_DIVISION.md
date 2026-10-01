@@ -331,7 +331,7 @@ def main():
         if lantai <= 10:
             nama_monster, teks_soal, jawaban_benar, bobot_gold = generate_soal_reguler()
             print("==================================================")
-            print(f"[FLOOR {lantai} / {TOTAL_LANTAI}] | TOTAL SAKU: {total_gold} GOLD")
+            print(f"[FLOOR {lantai} / {TOTAL_LANTAI}] | TOTAL GOLD: {total_gold} GOLD")
             print(f"Monster {nama_monster} menghadang jalanmu!")
             print("==================================================")
             print(f"Pertanyaan: Serang titik lemahnya dengan menjawab: {teks_soal}")

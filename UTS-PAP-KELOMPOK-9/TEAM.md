@@ -71,7 +71,7 @@ Sesuai batasan materi perkuliahan **Week 1 sampai 7 (Introduction hingga Functio
 
 ```text
 ==================================================
-[FLOOR 4 / 11] | TOTAL SAKU: 30 GOLD
+[FLOOR 4 / 11] | TOTAL GOLD: 30 GOLD
 Monster Perkalian menghadang jalanmu!
 ==================================================
 Pertanyaan: 12 * 7 = ?
