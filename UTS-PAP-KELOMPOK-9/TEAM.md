@@ -45,10 +45,10 @@ Terdapat total **11 Lantai (11 Soal)**:
 
 | Total Gold Diperoleh | Kategori Pencapaian | Keterangan Petualangan |
 | --- | --- | --- |
-| **1011 Gold** | **Grand Champion (Harta Sempurna)** | Menjawab seluruh soal dengan benar tanpa cela dan menjarah seluruh harta karun menara. |
-| **911 – 1001 Gold** | **Boss Conqueror** | Berhasil menaklukkan Final Boss di lantai 11 dan membawa pulang rampasan harta terbesar. |
-| **10 – 100 Gold** | **Scout Explorer** | Berhasil mengumpulkan *Gold* dari monster biasa, namun gagal menaklukkan tantangan lantai 11. |
-| **0 Gold** | **Empty Handed** | Gagal menjawab seluruh pertanyaan di setiap lantai menara. |
+| **1011 Gold** | **Penakluk Super Sangar** | Menjawab seluruh soal dengan benar tanpa cela dan menjarah seluruh harta karun menara. |
+| **911 – 1001 Gold** | **Penakluk Sangar** | Berhasil menaklukkan Final Boss di lantai 11 dan membawa pulang rampasan harta terbesar. |
+| **10 – 100 Gold** | **Kurang Sangar** | Berhasil mengumpulkan *Gold* dari monster biasa, namun gagal menaklukkan tantangan lantai 11. |
+| **0 Gold** | **Tidak Sangar** | Gagal menjawab seluruh pertanyaan di setiap lantai menara. |
 
 ---
 
