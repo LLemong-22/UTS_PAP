@@ -1,3 +1,5 @@
+import random
+
 def buat_distraktor(jawaban_benar):
     salah1 = jawaban_benar + random.randint(1, 4)
     salah2 = jawaban_benar - random.randint(1, 4)

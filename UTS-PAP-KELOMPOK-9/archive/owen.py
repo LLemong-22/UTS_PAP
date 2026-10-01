@@ -1,3 +1,6 @@
+import random
+
+
 def generate_soal_reguler():
     """
     Membangkitkan soal aritmatika dasar (Lantai 1-10) dengan 4 tipe operasi:
