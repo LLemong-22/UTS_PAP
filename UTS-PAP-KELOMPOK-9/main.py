@@ -12,7 +12,7 @@ TOTAL_GOLD_MAKSIMAL = 1011
 # ==============================================================================
 # TASK 1: GENERATOR SOAL ARITMATIKA DASAR (LANTAI 1-10)
 # ==============================================================================
-def generate_soal_reguler():
+def soal_reguler():
     """Membangkitkan soal aritmatika dasar (Lantai 1-10) dengan 4 tipe operasi:
 
     1: Penjumlahan (+)
@@ -52,7 +52,7 @@ def generate_soal_reguler():
 # ==============================================================================
 # TASK 2: FUNGSI VALIDASI INPUT & HANDLING SANITASI STRING
 # ==============================================================================
-def validasi_input_jawaban(prompt_teks):
+def validasi_jawaban(prompt_teks):
     """Menerima input dari pengguna, melakukan sanitasi string (strip dan
     upper),
 
@@ -73,7 +73,7 @@ def validasi_input_jawaban(prompt_teks):
 # ==============================================================================
 # TASK 3: ALGORITMA DISTRAKTOR & PENGACAKAN POSISI OPSI (A/B/C/D)
 # ==============================================================================
-def buat_distraktor(jawaban_benar):
+def jawaban_salah(jawaban_benar):
     """Membangkitkan 3 nilai distraktor (jawaban salah) yang nilainya berbeda
 
     satu sama lain serta berbeda dari jawaban asli. Murni menggunakan kalkulasi
@@ -90,7 +90,7 @@ def buat_distraktor(jawaban_benar):
     return salah1, salah2, salah3
 
 
-def tampilkan_pilihan(posisi_benar, benar, s1, s2, s3):
+def pilihan_jawaban(posisi_benar, benar, s1, s2, s3):
     """Mencetak 4 opsi pilihan ganda (A, B, C, D) berdasarkan posisi kunci (1-4)
 
     menggunakan percabangan if-elif-else tanpa tipe data list/tuple/dict.
@@ -125,7 +125,7 @@ def tampilkan_pilihan(posisi_benar, benar, s1, s2, s3):
 # ==============================================================================
 # TASK 4: GENERATOR FINAL BOSS & SIMULASI TEMPUR RPG (LANTAI 11)
 # ==============================================================================
-def generate_soal_boss():
+def soal_boss():
     """Membangkitkan soal Final Boss (Lantai 11):
 
     Dosen Penguji MATH1011 'SANGAR PhD' dengan kalkulasi putaran tempur (turns)
@@ -153,7 +153,7 @@ def generate_soal_boss():
 # ==============================================================================
 # TASK 5: MODUL REKAPITULASI AKHIR & EVALUASI MATRIKS GOLD
 # ==============================================================================
-def tampilkan_hasil_ekspedisi(total_gold):
+def hasil_akhir(total_gold):
     """Menampilkan layar rekapitulasi skor akhir dan kategori petualang."""
     print("==================================================")
     print("              HASIL EKSPEDISI TOWER               ")
@@ -244,7 +244,7 @@ def main():
         if lantai <= 10:
             # Lantai Reguler (Lantai 1 - 10)
             nama_monster, teks_soal, jawaban_benar, bobot_gold = (
-                generate_soal_reguler()
+                soal_reguler()
             )
             print("==================================================")
             print(
@@ -256,7 +256,7 @@ def main():
         else:
             # Lantai 11: Final Boss
             nama_monster, teks_soal, jawaban_benar, bobot_gold = (
-                generate_soal_boss()
+                soal_boss()
             )
             print("==================================================")
             print(">>> PERINGATAN: ANDA MEMASUKI LANTAI 11 <<<")
@@ -266,12 +266,12 @@ def main():
             print(teks_soal)
 
         # Bangkitkan opsi pilihan ganda
-        s1, s2, s3 = buat_distraktor(jawaban_benar)
+        s1, s2, s3 = jawaban_salah(jawaban_benar)
         posisi = random.randint(1, 4)
-        kunci = tampilkan_pilihan(posisi, jawaban_benar, s1, s2, s3)
+        kunci = pilihan_jawaban(posisi, jawaban_benar, s1, s2, s3)
 
         # Validasi input
-        jawaban_user = validasi_input_jawaban("Jawaban Anda (A/B/C/D): ")
+        jawaban_user = validasi_jawaban("Jawaban Anda (A/B/C/D): ")
 
         # Evaluasi Jawaban
         if jawaban_user == kunci:
@@ -296,8 +296,7 @@ def main():
 
     # Rekapitulasi Akhir
     print()
-    tampilkan_hasil_ekspedisi(total_gold)
+    hasil_akhir(total_gold)
 
 
-if __name__ == "__main__":
-    main()
+main()
