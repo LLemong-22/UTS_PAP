@@ -16,7 +16,7 @@ flowchart TD
     LoopStart -- Ya --> CekLantai{Lantai <= 10 ?}
     
     CekLantai -- Ya (Lantai 1-10) --> GenReguler[generate_soal_reguler<br/>Panggil buat_nama_monster anggota tim & mtk<br/>Acak operasi +, -, *, // & hitung bobot = 10]
-    CekLantai -- Tidak (Lantai 11) --> GenBoss[generate_soal_boss<br/>Kalkulasi putaran tempur RPG test.ipynb<br/>Hitung jawaban_benar & bobot = 911]
+    CekLantai -- Tidak (Lantai 11) --> GenBoss[generate_soal_boss<br/>Kalkulasi putaran tempur RPG: HP Boss // DMG Player<br/>Hitung jawaban_benar & bobot = 911]
 
     GenReguler --> DisplayHeader[Tampilkan Header Lantai & Monster]
     GenBoss --> DisplayHeaderBoss[Tampilkan Header Final Boss SANGAR PhD]
