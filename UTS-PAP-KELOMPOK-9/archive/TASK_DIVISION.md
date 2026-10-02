@@ -160,11 +160,11 @@ print(f"Kunci yang harusnya di C: {kunci_huruf}")
 **Penanggung Jawab:** Joel Sebastian Lasmito (262415411)
 
 ### Deskripsi & Tanggung Jawab:
-- Membuat fungsi `generate_soal_boss()` dari skenario RPG `test.ipynb`:
+- Membuat fungsi `generate_soal_boss()`:
   - Mengatur Final Boss: **SANGAR PhD (Dosen Penguji MATH1011)**.
-  - Simulasi matematika putaran tempur (turns):
-    - Target putaran acak `total_putaran` (40–60 putaran, bukan kelipatan 4).
-    - Menghitung HP Boss berdasarkan formula DMG pemain, Regen Boss, dan skill pasif *Divine Shield* (tiap kelipatan 4 putaran, DMG pemain = 0 tapi Boss tetap regen).
+  - Simulasi matematika putaran tempur (turns) sederhana:
+    - Target putaran acak `total_putaran` (20–50 putaran).
+    - Menghitung HP Boss berdasarkan formula `hp_boss = total_putaran * dmg_player`.
   - Mengembalikan: `nama_monster, teks_soal, jawaban_benar, HADIAH_GOLD_BOSS`.
 
 ### Potongan Kode yang Dikerjakan:
@@ -172,30 +172,16 @@ print(f"Kunci yang harusnya di C: {kunci_huruf}")
 def generate_soal_boss():
     nama_monster = "SANGAR PhD (Dosen Penguji MATH1011)"
 
-    total_putaran = random.randint(40, 60)
-    while total_putaran % 4 == 0:
-        total_putaran = random.randint(40, 60)
-
+    total_putaran = random.randint(20, 50)
     dmg_player = random.randint(1500, 2500)
-    heal_boss = random.randint(200, 500)
-
-    hp_calc = 0
-    for r in range(1, total_putaran + 1):
-        if r % 4 == 0:
-            hp_calc += heal_boss
-        else:
-            hp_calc += (dmg_player - heal_boss)
-
-    hp_boss = hp_calc - random.randint(1, (dmg_player - heal_boss) - 1)
+    hp_boss = total_putaran * dmg_player
     jawaban_benar = total_putaran
 
     teks_soal = (
         f"SANGAR PhD turun ke medan perang dengan aura mematikan!\n"
         f"Status Pertarungan:\n"
         f"- HP Boss        : {hp_boss:,}\n"
-        f"- DMG Senjatamu  : {dmg_player:,} / putaran\n"
-        f"- Regen Boss     : {heal_boss:,} HP tiap diserang\n"
-        f"- Pasif Shield   : Tiap kelipatan 4 putaran, DMG senjata = 0 (Boss tetap regen)!\n\n"
+        f"- DMG Senjatamu  : {dmg_player:,} / putaran\n\n"
         f"Pertanyaan: Berapa putaran yang kamu butuhkan untuk menghabisi HP Boss sampai 0?"
     )
 

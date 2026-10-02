@@ -107,30 +107,16 @@ def tampilkan_jawaban(posisi_benar, benar, s1, s2, s3):
 def soal_final():
     nama_entitas = "Sangar PhD (Dosen Penguji MATH1011)"
 
-    total_putaran = random.randint(40, 60)
-    while total_putaran % 4 == 0:
-        total_putaran = random.randint(40, 60)
-
+    total_putaran = random.randint(20, 50)
     dmg_player = random.randint(1500, 2500)
-    heal_boss = random.randint(200, 500)
-
-    hp_calc = 0
-    for r in range(1, total_putaran + 1):
-        if r % 4 == 0:
-            hp_calc += heal_boss
-        else:
-            hp_calc += (dmg_player - heal_boss)
-
-    hp_boss = hp_calc - random.randint(1, (dmg_player - heal_boss) - 1)
+    hp_boss = total_putaran * dmg_player
     jawaban_benar = total_putaran
 
     teks_soal = (
         f"Sangar PhD turun ke medan perang dengan aura mematikan!\n"
         f"Status Pertarungan:\n"
         f"- HP Boss        : {hp_boss:,}\n"
-        f"- DMG Senjatamu  : {dmg_player:,} / putaran\n"
-        f"- Regen Boss     : {heal_boss:,} HP tiap diserang\n"
-        f"- Pasif Shield   : Tiap kelipatan 4 putaran, DMG senjata = 0 (Boss tetap regen)!\n\n"
+        f"- DMG Senjatamu  : {dmg_player:,} / putaran\n\n"
         f"Pertanyaan: Berapa putaran yang kamu butuhkan untuk menghabisi HP Boss sampai 0?"
     )
 
@@ -185,7 +171,7 @@ def main():
         if lantai <= 10:
             nama_entitas, teks_soal, jawaban_benar, bobot_gold = soal_biasa()
             print("==================================================")
-            print(f"[FLOOR {lantai} / {TOTAL_LANTAI}] | TOTAL SAKU: {total_gold} GOLD")
+            print(f"[FLOOR {lantai} / {TOTAL_LANTAI}] | TOTAL GOLD: {total_gold} GOLD")
             print(f"Monster {nama_entitas} menghadang jalanmu!")
             print("==================================================")
             print(f"Pertanyaan: Serang titik lemahnya dengan menjawab: {teks_soal}")
@@ -220,4 +206,5 @@ def main():
     hasil_akhir(total_gold)
 
 
-main()
+if __name__ == "__main__":
+    main()

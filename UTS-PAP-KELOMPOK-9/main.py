@@ -11,7 +11,6 @@ TOTAL_GOLD_MAKSIMAL = 1011
 
 # ==============================================================================
 # TASK 1: GENERATOR SOAL ARITMATIKA DASAR (LANTAI 1-10)
-# Penanggung Jawab: Wilbert Owen Nathanael (262602544)
 # ==============================================================================
 def generate_soal_reguler():
     """Membangkitkan soal aritmatika dasar (Lantai 1-10) dengan 4 tipe operasi:
@@ -52,7 +51,6 @@ def generate_soal_reguler():
 
 # ==============================================================================
 # TASK 2: FUNGSI VALIDASI INPUT & HANDLING SANITASI STRING
-# Penanggung Jawab: Christoph Jordan Dalimartin (262510530)
 # ==============================================================================
 def validasi_input_jawaban(prompt_teks):
     """Menerima input dari pengguna, melakukan sanitasi string (strip dan
@@ -74,7 +72,6 @@ def validasi_input_jawaban(prompt_teks):
 
 # ==============================================================================
 # TASK 3: ALGORITMA DISTRAKTOR & PENGACAKAN POSISI OPSI (A/B/C/D)
-# Penanggung Jawab: Lionel Esra Mailuhu (262602117)
 # ==============================================================================
 def buat_distraktor(jawaban_benar):
     """Membangkitkan 3 nilai distraktor (jawaban salah) yang nilainya berbeda
@@ -127,45 +124,26 @@ def tampilkan_pilihan(posisi_benar, benar, s1, s2, s3):
 
 # ==============================================================================
 # TASK 4: GENERATOR FINAL BOSS & SIMULASI TEMPUR RPG (LANTAI 11)
-# Penanggung Jawab: Joel Sebastian Lasmito (262415411)
 # ==============================================================================
 def generate_soal_boss():
     """Membangkitkan soal Final Boss (Lantai 11):
 
-    Dosen Penguji MATH1011 'SANGAR PhD' dengan mekanik kalkulasi putaran tempur
-    (turns),
-    DMG senjata, Regen Boss, dan pasif Divine Shield tiap kelipatan 4 putaran.
+    Dosen Penguji MATH1011 'SANGAR PhD' dengan kalkulasi putaran tempur (turns)
+    sederhana: membagi total HP Boss dengan DMG senjata per putaran.
     Mengembalikan: nama_monster, teks_soal, jawaban_benar, bobot_gold
     """
     nama_monster = "SANGAR PhD (Dosen Penguji MATH1011)"
 
-    total_putaran = random.randint(40, 60)
-    while total_putaran % 4 == 0:
-        total_putaran = random.randint(40, 60)
-
+    total_putaran = random.randint(20, 50)
     dmg_player = random.randint(1500, 2500)
-    heal_boss = random.randint(200, 500)
-
-    # REVISI LOGIKA: Pada ronde r % 4 == 0, DMG = 0 dan Boss Regen heal_boss.
-    # Maka akumulasi damage bersih berkurang (- heal_boss).
-    hp_calc = 0
-    for r in range(1, total_putaran + 1):
-        if r % 4 == 0:
-            hp_calc -= heal_boss
-        else:
-            hp_calc += dmg_player - heal_boss
-
-    # Boss mati tepat di ronde terakhir jika HP awalnya sedikit di bawah hp_calc
-    hp_boss = hp_calc - random.randint(1, (dmg_player - heal_boss) - 1)
+    hp_boss = total_putaran * dmg_player
     jawaban_benar = total_putaran
 
     teks_soal = (
         f"SANGAR PhD turun ke medan perang dengan aura mematikan!\n"
         f"Status Pertarungan:\n"
         f"- HP Boss        : {hp_boss:,}\n"
-        f"- DMG Senjatamu  : {dmg_player:,} / putaran\n"
-        f"- Regen Boss     : {heal_boss:,} HP tiap diserang\n"
-        f"- Pasif Shield   : Tiap kelipatan 4 putaran, DMG senjata = 0 (Boss tetap regen)!\n\n"
+        f"- DMG Senjatamu  : {dmg_player:,} / putaran\n\n"
         f"Pertanyaan: Berapa putaran yang kamu butuhkan untuk menghabisi HP Boss sampai 0?"
     )
 
@@ -174,7 +152,6 @@ def generate_soal_boss():
 
 # ==============================================================================
 # TASK 5: MODUL REKAPITULASI AKHIR & EVALUASI MATRIKS GOLD
-# Penanggung Jawab: Evan Adhiarja Yohanes (262407793)
 # ==============================================================================
 def tampilkan_hasil_ekspedisi(total_gold):
     """Menampilkan layar rekapitulasi skor akhir dan kategori petualang."""
@@ -198,7 +175,7 @@ def tampilkan_hasil_ekspedisi(total_gold):
     elif total_gold >= 10:
         kategori = "Kurang Sangar"
         pesan1 = "Berhasil mengumpulkan Gold dari monster biasa,"
-        pesan2 = "namun gagal menaklukkan Final Boss."
+        pesan2 = "namun gagal menaklukkan tantangan lantai 11."
         pesan3 = ""
     else:
         kategori = "Tidak Sangar"
@@ -217,7 +194,6 @@ def tampilkan_hasil_ekspedisi(total_gold):
 
 # ==============================================================================
 # TASK 6: GENERATOR NAMA MONSTER & CONTROLLER LOOP UTAMA GAME
-# Penanggung Jawab: Yosia Edmund Herlianto (262514949)
 # ==============================================================================
 def buat_nama_monster():
     """Membangkitkan nama monster unik gabungan nama anggota tim dan istilah

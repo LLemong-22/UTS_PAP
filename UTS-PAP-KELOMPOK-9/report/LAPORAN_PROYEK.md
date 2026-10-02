@@ -76,16 +76,14 @@ Hadiah Kemenangan: 911 GOLD
 ==================================================
 SANGAR PhD turun ke medan perang dengan aura mematikan!
 Status Pertarungan:
-- HP Boss        : 58,420
-- DMG Senjatamu  : 2,120 / putaran
-- Regen Boss     : 340 HP tiap diserang
-- Pasif Shield   : Tiap kelipatan 4 putaran, DMG senjata = 0 (Boss tetap regen)!
+- HP Boss        : 50,000
+- DMG Senjatamu  : 2,000 / putaran
 
 Pertanyaan: Berapa putaran yang kamu butuhkan untuk menghabisi HP Boss sampai 0?
-A. 47
-B. 44
-C. 42
-D. 50
+A. 25
+B. 28
+C. 22
+D. 31
 Jawaban Anda (A/B/C/D): A
 
 >> FATALITY! SANGAR PhD (Dosen Penguji MATH1011) DIKALAHKAN, Anda memperoleh +911 Gold!
