@@ -1,63 +1,66 @@
-# DOKUMENTASI FLOWCHART SISTEM - TOWER OF MATH1011
-**Kelompok 9 - Pengantar Algoritma dan Pemrograman (PAP)**
+# Dokumentasi Flowchart Sistem - Tower of MATH1011
+**Kelompok 9 | Pengantar Algoritma dan Pemrograman (PAP)**
 
 ---
 
-## 1. Diagram Alir Utama (Game Flowchart)
+## Diagram Alir Utama (Game Flowchart)
 
-Diagram ini mengilustrasikan seluruh alur eksekusi program `main.py` dari inisialisasi hingga kalkulasi hasil akhir.
+Diagram alir berikut memetakan logika eksekusi program `main.py` dari awal hingga selesai, mencakup lantai reguler (1–10), simulasi pertarungan Final Boss (Lantai 11), dan modul rekapitulasi akhir:
 
 ```mermaid
 flowchart TD
-    Start([Mulai]) --> Init[Inisialisasi Konstanta & total_gold = 0]
-    Init --> LoopStart{Lantai <= 11 ?}
+    Start([Mulai]) --> Init["total_gold = 0<br/>lantai = 1"]
+    Init --> LoopLantai{"lantai <= 11 ?"}
 
-    %% Cabang Kondisi Lantai
-    LoopStart -- Ya --> CekLantai{Lantai <= 10 ?}
-    
-    CekLantai -- Ya (Lantai 1-10) --> GenReguler[generate_soal_reguler<br/>Panggil buat_nama_monster anggota tim & mtk<br/>Acak operasi +, -, *, // & hitung bobot = 10]
-    CekLantai -- Tidak (Lantai 11) --> GenBoss[generate_soal_boss<br/>Kalkulasi putaran tempur RPG: HP Boss // DMG Player<br/>Hitung jawaban_benar & bobot = 911]
+    %% Cabang Lantai Reguler vs Boss
+    LoopLantai -- Ya --> CekLantai{"lantai <= 10 ?"}
 
-    GenReguler --> DisplayHeader[Tampilkan Header Lantai & Monster]
-    GenBoss --> DisplayHeaderBoss[Tampilkan Header Final Boss SANGAR PhD]
+    %% Sub-alur Lantai Reguler (1-10)
+    subgraph LantaiReguler["Lantai Reguler (1 - 10)"]
+        CekLantai -- Ya --> GenReguler["Buat Nama Monster & Soal Aritmatika (+, -, *, //)<br/>Swap jika pengurangan & a < b"]
+        GenReguler --> HitungReguler["Hitung Jawaban Benar & Generate Distraktor (s1, s2, s3)"]
+        HitungReguler --> AcakReguler["Acak Posisi Kunci (1..4)"]
+        AcakReguler --> TampilReguler[/"Tampilkan Header Lantai, Soal & Opsi (A, B, C, D)"/]
+        TampilReguler --> InputReguler[/"Input & Validasi Jawaban User (A/B/C/D)"/]
+        InputReguler --> CekJawabanReguler{"Jawaban User == Kunci ?"}
+        CekJawabanReguler -- Benar --> WinReguler[/"Tampilkan Critical Hit! Pesan Berhasil"/]
+        WinReguler --> AddGoldReguler["total_gold += 10"]
+        CekJawabanReguler -- Salah --> LoseReguler[/"Tampilkan Serangan Meleset & Kunci Jawaban"/]
+    end
 
-    DisplayHeader --> Distraktor[buat_distraktor<br/>Bentuk 3 jawaban salah s1, s2, s3 skalar]
-    DisplayHeaderBoss --> Distraktor
+    %% Sub-alur Final Boss (Lantai 11)
+    subgraph FinalBoss["Final Boss Lantai 11 (SANGAR PhD)"]
+        CekLantai -- Tidak --> InitBoss["Inisialisasi Status Pertarungan:<br/>total_putaran = random(20, 50)<br/>dmg_player = random(1500, 2500)<br/>hp_boss = total_putaran * dmg_player<br/>jawaban_benar = total_putaran"]
+        InitBoss --> SetKunciBoss["Generate Distraktor (s1, s2, s3)<br/>Acak Posisi Kunci (1..4)"]
+        SetKunciBoss --> TampilBoss[/"Tampilkan Status Pertarungan, Soal Cerita & Opsi (A, B, C, D)"/]
+        TampilBoss --> InputBoss[/"Input & Validasi Jawaban User (A/B/C/D)"/]
+        InputBoss --> CekJawabanBoss{"Jawaban User == Kunci ?"}
+        CekJawabanBoss -- Benar --> WinBoss[/"Tampilkan Fatality! SANGAR PhD Dikalahkan"/]
+        WinBoss --> AddGoldBoss["total_gold += 911"]
+        CekJawabanBoss -- Salah --> LoseBoss[/"Tampilkan You Died! & Kunci Jawaban"/]
+    end
 
-    Distraktor --> AcakPosisi[Acak posisi kunci: random 1..4]
-    AcakPosisi --> CetakOpsi[tampilkan_pilihan<br/>Cetak A/B/C/D via if-elif-else<br/>Simpan huruf kunci jawaban]
-
-    %% Validasi Input Pengguna
-    CetakOpsi --> InputUser[/Input jawaban_user/]
-    InputUser --> Sanitasi[Sanitasi string: .strip.upper]
-    Sanitasi --> Validasi{Jawaban in 'A', 'B', 'C', 'D'?}
-    Validasi -- Tidak Valid --> PesanError[Tampilkan Pesan Error Validasi]
-    PesanError --> InputUser
-    
-    %% Evaluasi Jawaban
-    Validasi -- Valid --> CekJawaban{jawaban_user == kunci ?}
-    CekJawaban -- Benar --> TambahGold[total_gold += bobot<br/>Tampilkan Pesan Berhasil & Perolehan Gold]
-    CekJawaban -- Salah --> PesanSalah[Tampilkan Pesan Meleset & Kunci Jawaban Benar]
-
-    TambahGold --> NextFloor[Lantai = Lantai + 1]
-    PesanSalah --> NextFloor
-    NextFloor --> LoopStart
+    %% Next Lantai
+    AddGoldReguler --> NextFloor["lantai = lantai + 1"]
+    LoseReguler --> NextFloor
+    AddGoldBoss --> NextFloor
+    LoseBoss --> NextFloor
+    NextFloor --> LoopLantai
 
     %% Rekapitulasi Akhir
-    LoopStart -- Selesai (Lantai > 11) --> TampilRekap[tampilkan_hasil_ekspedisi<br/>Evaluasi total_gold ke Matriks Pencapaian]
-    TampilRekap --> CetakSkor[/Cetak Box HASIL EKSPEDISI TOWER/]
-    CetakSkor --> End([Selesai])
+    subgraph RekapitulasiSkor["Penentuan Kategori & Skor Akhir"]
+        LoopLantai -- Tidak --> Cek1011{"total_gold == 1011 ?"}
+        Cek1011 -- Ya --> Kat1["Kategori: Penakluk Super Sangar"]
+        Cek1011 -- Tidak --> Cek911{"total_gold >= 911 ?"}
+        Cek911 -- Ya --> Kat2["Kategori: Penakluk Sangar"]
+        Cek911 -- Tidak --> Cek10{"total_gold >= 10 ?"}
+        Cek10 -- Ya --> Kat3["Kategori: Kurang Sangar"]
+        Cek10 -- Tidak --> Kat4["Kategori: Tidak Sangar"]
+        Kat1 --> TampilRekap[/"Cetak Ringkasan Ekspedisi & Gelar Petualang"/]
+        Kat2 --> TampilRekap
+        Kat3 --> TampilRekap
+        Kat4 --> TampilRekap
+    end
+
+    TampilRekap --> End([Selesai])
 ```
-
----
-
-## 2. Penjelasan Komponen Alur (Traceability ke Task Tim)
-
-| Simbol / Tahapan | Fungsi / Modul Terkait | Penanggung Jawab Task |
-| :--- | :--- | :--- |
-| **Generator Soal Reguler (Lantai 1-10)** | `generate_soal_reguler()` | **Task 1: Wilbert Owen Nathanael** |
-| **Validasi & Sanitasi Input Jawaban** | `validasi_input_jawaban()` | **Task 2: Christoph Jordan Dalimartin** |
-| **Distraktor & Tampilan Opsi A/B/C/D** | `buat_distraktor()`, `tampilkan_pilihan()` | **Task 3: Lionel Esra Mailuhu** |
-| **Generator Final Boss (Lantai 11)** | `generate_soal_boss()` | **Task 4: Joel Sebastian Lasmito** |
-| **Rekapitulasi Akhir & Matriks Gold** | `tampilkan_hasil_ekspedisi()` | **Task 5: Evan Adhiarja Yohanes** |
-| **Generator Nama Monster & Game Loop** | `buat_nama_monster()`, `main()` | **Task 6: Yosia Edmund Herlianto** |

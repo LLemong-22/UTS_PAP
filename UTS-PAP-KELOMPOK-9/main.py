@@ -12,41 +12,45 @@ TOTAL_GOLD_MAKSIMAL = 1011
 # ==============================================================================
 # TASK 1: GENERATOR SOAL ARITMATIKA DASAR (LANTAI 1-10)
 # ==============================================================================
-def soal_reguler():
-    """Membangkitkan soal aritmatika dasar (Lantai 1-10) dengan 4 tipe operasi:
+def teks_soal_reguler(tipe_op, a, b):
+    """Menyusun teks soal aritmatika dasar (Lantai 1-10) dari 4 tipe operasi:
 
     1: Penjumlahan (+)
     2: Pengurangan (-)
     3: Perkalian (*)
     4: Pembagian bulat (/) dengan hasil yang selalu pas (tanpa sisa)
-    Mengembalikan: nama_monster, teks_soal, jawaban_benar, bobot_gold
+    Nilai tipe_op, a, dan b dibangkitkan di main() agar teks soal dan
+    jawaban selalu memakai angka yang sama.
+    Mengembalikan: teks_soal (string)
     """
-    nama_monster = buat_nama_monster()
-    tipe_op = random.randint(1, 4)
-    a = random.randint(5, 20)
-    b = random.randint(1, 10)
-
     if tipe_op == 1:
-        teks_soal = f"{a} + {b} = ?"
-        jawaban_benar = a + b
+        return f"{a} + {b} = ?"
     elif tipe_op == 2:
-        # Memastikan hasil pengurangan selalu positif
-        if a < b:
-            temp = a
-            a = b
-            b = temp
-        teks_soal = f"{a} - {b} = ?"
-        jawaban_benar = a - b
+        return f"{a} - {b} = ?"
     elif tipe_op == 3:
-        teks_soal = f"{a} * {b} = ?"
-        jawaban_benar = a * b
+        return f"{a} * {b} = ?"
     else:
         # Menjamin pembagian bilangan bulat yang tepat dan rapi
         hasil_kali = a * b
-        teks_soal = f"{hasil_kali} / {b} = ?"
-        jawaban_benar = a
+        return f"{hasil_kali} / {b} = ?"
 
-    return nama_monster, teks_soal, jawaban_benar, HADIAH_GOLD_REGULER
+
+def jawaban_reguler(tipe_op, a, b):
+    """Menghitung jawaban benar untuk soal reguler dengan tipe_op, a, dan b
+
+    yang sama seperti pada teks_soal_reguler().
+    Mengembalikan: jawaban_benar (int)
+    """
+    if tipe_op == 1:
+        return a + b
+    elif tipe_op == 2:
+        return a - b
+    elif tipe_op == 3:
+        return a * b
+    else:
+        # Soal berbentuk (a * b) // b, sehingga hasil pembagian bulatnya pasti a
+        hasil_kali = a * b
+        return hasil_kali // b
 
 
 # ==============================================================================
@@ -73,21 +77,24 @@ def validasi_jawaban(prompt_teks):
 # ==============================================================================
 # TASK 3: ALGORITMA DISTRAKTOR & PENGACAKAN POSISI OPSI (A/B/C/D)
 # ==============================================================================
-def jawaban_salah(jawaban_benar):
-    """Membangkitkan 3 nilai distraktor (jawaban salah) yang nilainya berbeda
+def jawaban_salah(jawaban_benar, urutan):
+    """Membangkitkan 1 nilai distraktor (jawaban salah) sesuai urutan (1-3).
 
-    satu sama lain serta berbeda dari jawaban asli. Murni menggunakan kalkulasi
-    skalar dan random.
+    Dipanggil 3 kali dari main(). Rentang tiap urutan tidak saling tumpang
+    tindih, sehingga ketiga distraktor dijamin berbeda satu sama lain serta
+    berbeda dari jawaban asli. Murni menggunakan kalkulasi skalar dan random.
+    Mengembalikan: nilai distraktor (int)
     """
-    salah1 = jawaban_benar + random.randint(1, 4)
-    salah2 = jawaban_benar - random.randint(1, 4)
-    salah3 = jawaban_benar + random.randint(5, 8)
-
-    # Antisipasi nilai non-positif untuk soal matematika dasar
-    if salah2 <= 0:
-        salah2 = jawaban_benar + random.randint(9, 12)
-
-    return salah1, salah2, salah3
+    if urutan == 1:
+        return jawaban_benar + random.randint(1, 4)
+    elif urutan == 2:
+        salah = jawaban_benar - random.randint(1, 4)
+        # Antisipasi nilai non-positif untuk soal matematika dasar
+        if salah <= 0:
+            salah = jawaban_benar + random.randint(9, 12)
+        return salah
+    else:
+        return jawaban_benar + random.randint(5, 8)
 
 
 def pilihan_jawaban(posisi_benar, benar, s1, s2, s3):
@@ -125,19 +132,16 @@ def pilihan_jawaban(posisi_benar, benar, s1, s2, s3):
 # ==============================================================================
 # TASK 4: GENERATOR FINAL BOSS & SIMULASI TEMPUR RPG (LANTAI 11)
 # ==============================================================================
-def soal_boss():
-    """Membangkitkan soal Final Boss (Lantai 11):
+def teks_soal_boss(total_putaran, dmg_player):
+    """Menyusun teks soal Final Boss (Lantai 11):
 
     Dosen Penguji MATH1011 'SANGAR PhD' dengan kalkulasi putaran tempur (turns)
     sederhana: membagi total HP Boss dengan DMG senjata per putaran.
-    Mengembalikan: nama_monster, teks_soal, jawaban_benar, bobot_gold
+    HP Boss dibentuk dari total_putaran * dmg_player sehingga jawabannya
+    (total_putaran) selalu bilangan bulat.
+    Mengembalikan: teks_soal (string)
     """
-    nama_monster = "SANGAR PhD (Dosen Penguji MATH1011)"
-
-    total_putaran = random.randint(20, 50)
-    dmg_player = random.randint(1500, 2500)
     hp_boss = total_putaran * dmg_player
-    jawaban_benar = total_putaran
 
     teks_soal = (
         f"SANGAR PhD turun ke medan perang dengan aura mematikan!\n"
@@ -147,7 +151,7 @@ def soal_boss():
         f"Pertanyaan: Berapa putaran yang kamu butuhkan untuk menghabisi HP Boss sampai 0?"
     )
 
-    return nama_monster, teks_soal, jawaban_benar, HADIAH_GOLD_BOSS
+    return teks_soal
 
 
 # ==============================================================================
@@ -243,9 +247,21 @@ def main():
     for lantai in range(1, TOTAL_LANTAI + 1):
         if lantai <= 10:
             # Lantai Reguler (Lantai 1 - 10)
-            nama_monster, teks_soal, jawaban_benar, bobot_gold = (
-                soal_reguler()
-            )
+            nama_monster = buat_nama_monster()
+            tipe_op = random.randint(1, 4)
+            a = random.randint(5, 20)
+            b = random.randint(1, 10)
+
+            # Memastikan hasil pengurangan selalu positif
+            if tipe_op == 2 and a < b:
+                temp = a
+                a = b
+                b = temp
+
+            teks_soal = teks_soal_reguler(tipe_op, a, b)
+            jawaban_benar = jawaban_reguler(tipe_op, a, b)
+            bobot_gold = HADIAH_GOLD_REGULER
+
             print("==================================================")
             print(
                 f"[FLOOR {lantai} / {TOTAL_LANTAI}] | TOTAL GOLD: {total_gold} GOLD"
@@ -255,9 +271,14 @@ def main():
             print(f"Pertanyaan: Serang titik lemahnya dengan menjawab: {teks_soal}")
         else:
             # Lantai 11: Final Boss
-            nama_monster, teks_soal, jawaban_benar, bobot_gold = (
-                soal_boss()
-            )
+            nama_monster = "SANGAR PhD (Dosen Penguji MATH1011)"
+            total_putaran = random.randint(20, 50)
+            dmg_player = random.randint(1500, 2500)
+
+            teks_soal = teks_soal_boss(total_putaran, dmg_player)
+            jawaban_benar = total_putaran
+            bobot_gold = HADIAH_GOLD_BOSS
+
             print("==================================================")
             print(">>> PERINGATAN: ANDA MEMASUKI LANTAI 11 <<<")
             print(f">>> FINAL BOSS: {nama_monster} <<<")
@@ -266,7 +287,9 @@ def main():
             print(teks_soal)
 
         # Bangkitkan opsi pilihan ganda
-        s1, s2, s3 = jawaban_salah(jawaban_benar)
+        s1 = jawaban_salah(jawaban_benar, 1)
+        s2 = jawaban_salah(jawaban_benar, 2)
+        s3 = jawaban_salah(jawaban_benar, 3)
         posisi = random.randint(1, 4)
         kunci = pilihan_jawaban(posisi, jawaban_benar, s1, s2, s3)
 

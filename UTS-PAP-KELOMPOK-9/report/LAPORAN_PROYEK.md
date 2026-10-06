@@ -1,8 +1,8 @@
 # Project Coding: Tower of MATH1011
 **UTS - Pengantar Algoritma dan Pemrograman**  
-Repository: [https://github.com/Lemong-22/UTS_PAP](https://github.com/Lemong-22/UTS_PAP)
+**REPOSITORY :** [https://github.com/Lemong-22/UTS_PAP](https://github.com/Lemong-22/UTS_PAP)
 
-**Anggota Kelompok 9 (Aplikasi Kuis Matematika Pilihan Ganda - Ada Skor Akhir):**
+**Anggota Kelompok 9 - Aplikasi kuis matematika pilihan ganda (ada skor akhir):**
 - Wilbert Owen Nathanael (262602544)
 - Christoph Jordan Dalimartin (262510530)
 - Lionel Esra Mailuhu (262602117)
@@ -24,7 +24,7 @@ Di game ini, user bakal berperan jadi seorang petualang yang lagi mendaki menara
 
 ## 2. Fitur Utama Program
 1. **Kuis matematika yang digamify jadi seperti main game**
-2. **Tantangan Final Boss (Soal Cerita / Logika):** Lantai 11 menghadirkan soal cerita yang berbeda dengan soal di lantai biasa
+2. **Tantangan Final Boss (Soal Cerita / Logika):** Lantai 11 menghadirkan soal cerita yang berbeda dengan soal di lantai biasa (kalkulasi putaran tempur menghabisi HP Boss).
 3. **Sistem Akumulasi Skor (kita pakai Gold):** Jawaban benar memberi +10 Gold di lantai reguler dan +911 Gold di lantai boss, dengan target skor maksimal 1011 Gold.
 4. **Tampilan skor akhir:** Di akhir ada output evaluasi pencapaian petualang di akhir permainan berdasarkan total Gold yang berhasil dikumpulkan.
 
@@ -32,12 +32,13 @@ Di game ini, user bakal berperan jadi seorang petualang yang lagi mendaki menara
 
 ## 3. Struktur Lantai & Sistem Gold
 Menara ini punya total 11 Lantai (11 Soal) dengan pembagian hadiah sebagai berikut:
+
 - **Lantai 1 – 10 (Monster Aritmatika Dasar)**
-  - Soal: Penjumlahan (+), pengurangan (-), perkalian (*), dan pembagian (/).
+  - Soal: Penjumlahan (`+`), pengurangan (`-`), perkalian (`*`), dan pembagian (`/`).
   - Hadiah: 10 Gold per soal yang dijawab benar.
   - Maksimal Gold: 100 Gold.
 - **Lantai 11 (FINAL BOSS: Sangar PhD)**
-  - Soal: Soal cerita tingkat lanjut (kalkulasi putaran tempur RPG).
+  - Soal: Soal cerita tingkat lanjut
   - Hadiah: 911 Gold.
 
 Kalau kamu berhasil jawab semua soal dengan benar, kamu bakal dapet total **1011 Gold** (100 + 911), sesuai judul projectnya: **MATH1011**!
@@ -111,5 +112,3 @@ Pesan Petualangan           : Ekspedisi selesai! Anda berhasil
                               dari Tower of MATH1011!
 ==================================================
 ```
-
-
