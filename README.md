@@ -50,17 +50,16 @@ Di akhir permainan, total Gold yang kamu kumpulkan akan menentukan gelar petuala
 | **0 Gold** | 💀 **Tidak Sangar** | Gagal menjawab semua soal di menara. |
 
 ---
-
 ## 📁 Struktur File
 
 ```text
 UTS_PAP/
-├── README.md                          <- Panduan proyek ini
+├── README.md                          <- Panduan utama proyek ini
 └── UTS-PAP-KELOMPOK-9/
     ├── main.py                        <- Program utama game Tower of MATH1011
     ├── TEAM.md                        <- Dokumen rancangan tim
     ├── flowchart/
-    │   └── flowchart_game.md          <- Diagram alur program (Mermaid)
+    │   └── flowchart                  <- Diagram alur program 
     ├── report/
     │   ├── LAPORAN_PROYEK.md          <- Laporan resmi proyek UTS
     │   └── konsep awal.png            <- Gambar konsep awal permainan
