@@ -1,7 +1,7 @@
 # 🏰 Tower of MATH1011
 
 > **Tugas Proyek UTS - Pengantar Algoritma dan Pemrograman**  
-> **Kelompok 9** | Aplikasi Kuis Matematika Pilihan Ganda Berbasis CLI (Terminal)
+> **Kelompok 4** | Aplikasi Kuis Matematika Pilihan Ganda Berbasis CLI (Terminal)
 
 ---
 

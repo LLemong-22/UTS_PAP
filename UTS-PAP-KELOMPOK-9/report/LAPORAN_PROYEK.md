@@ -2,7 +2,7 @@
 **UTS - Pengantar Algoritma dan Pemrograman**  
 **REPOSITORY :** [https://github.com/Lemong-22/UTS_PAP](https://github.com/Lemong-22/UTS_PAP)
 
-**Anggota Kelompok 9 - Aplikasi kuis matematika pilihan ganda (ada skor akhir):**
+**Anggota Kelompok 4 - Aplikasi kuis matematika pilihan ganda (ada skor akhir):**
 - Wilbert Owen Nathanael (262602544)
 - Christoph Jordan Dalimartin (262510530)
 - Lionel Esra Mailuhu (262602117)
